@@ -12,7 +12,15 @@
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *format, ...)
+int		ft_printf(const char *format, va_list ap)
 {
-	return (0);
+	static t_printf_data	data = {0};
+
+	va_copy(data->args, ap);
+	if (!data->ret_str)
+		data->ret_str = ft_create_str();
+	data->str = data->ret_str;
+	
+	va_end(data->args);
+	return (data.ret_value);
 }
