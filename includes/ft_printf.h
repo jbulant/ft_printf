@@ -1,24 +1,22 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jbulant <jbulant@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/11 22:05:12 by jbulant           #+#    #+#             */
-/*   Updated: 2018/03/10 00:20:54 by bal-khan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include "libft.h"
 
-# define A __attribute__ ((format (printf, 1, 2)))
-int	ft_printf(const char *format, ...) A;
-# undef A
+# define PRINTF_ATTR __attribute__ ((format (printf, 1, 2)))
+int	ft_printf(const char *format, ...) PRINTF_ATTR;
+
+# define TREATING(x) x != 0
+
+typedef enum	e_ft_printf_status
+{
+	FINISH = 0,
+	COPYING = 1,
+	ANALYZING_PERCENT = 2
+}				t_ft_printf_status;
 
 typedef enum	e_flags
 {
@@ -57,13 +55,20 @@ typedef struct	s_str
 
 typedef struct	s_printf_data
 {
-	t_str		*ret_str;
-	t_str		*str;
-	int			ret_value;
-	va_list		*args;
-	char		*format_string;
+	t_str				*root_str;
+	t_str				*str;
+	int					ret_value;
+	va_list				args;
+	const char			*format_string;
+	int					format_index;
+	int					max_copy;
+	t_ft_printf_status	status;
 }				t_printf_data;
 
 t_str	*ft_create_str(void);
+int		ft_printf_copy(t_printf_data *data);
+int		ft_printf_analyze(t_printf_data *data);
+void	check_status(t_printf_data *data);
+void	ft_printf_close(t_printf_data *data);
 
 #endif
