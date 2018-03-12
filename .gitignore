@@ -1,4 +1,7 @@
 *~
 *#
 *.o
+*.a
 objs
+main.c
+a.out
