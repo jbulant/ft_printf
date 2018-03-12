@@ -1,6 +1,8 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+#include <stdio.h>
+
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -26,10 +28,10 @@ typedef enum	e_flags
 	DELIM_INT = (1 << 3),
 	DELIM_OCTAL = (1 << 4),
 	DELIM_UNSIGNED = (1 << 5),
-	DELIM_LOWER_HEX = (1 << 6),
-	DELIM_UPPER_HEX = (1 << 7),
-	DELIM_CHAR = (1 << 8),
-	DELIM_UNI_CHAR = (1 << 9),
+	DELIM_HEX = (1 << 6),
+	DELIM_CHAR = (1 << 7),
+// corrige ta merde
+	DELIM_UNI_CHAR = (1 << 8),
 	SPEC_HASH = (1 << 10),
 	SPEC_ZERO = (1 << 11),
 	SPEC_MINUS = (1 << 12),
@@ -70,5 +72,12 @@ int		ft_printf_copy(t_printf_data *data);
 int		ft_printf_analyze(t_printf_data *data);
 void	check_status(t_printf_data *data);
 void	ft_printf_close(t_printf_data *data);
+int		parse_int_type(t_printf_data *data, t_flags *flag);
+int		parse_str_type(t_printf_data *data, t_flags *flag);
+int		parse_oct(t_printf_data *data, t_flags *flag);
+int		parse_hex(t_printf_data *data, t_flags *flag);
+int		parse_char_type(t_printf_data *data, t_flags *flag);
+int		parse_pointer(t_printf_data *data, t_flags *flag);
+char	*ft_static_itoa_base(int nb, int base);
 
 #endif

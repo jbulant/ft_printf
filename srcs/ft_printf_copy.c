@@ -9,7 +9,8 @@ int	ft_printf_copy(t_printf_data *data)
 		data->str->next = ft_create_str();
 		data->str = data->str->next;
 	}
-	ft_memcpy(data->str->buffer, data->format_string + data->format_index, data->max_copy);
+	ft_memcpy(data->str->buffer + data->str->size, data->format_string + data->format_index, data->max_copy);
 	data->str->size += data->max_copy;
+	data->format_index += data->max_copy;
 	return (0);
 }
