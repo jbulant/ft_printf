@@ -6,7 +6,7 @@
 #    By: jbulant <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 16:49:28 by jbulant           #+#    #+#              #
-#    Updated: 2018/03/12 06:16:19 by jbulant          ###   ########.fr        #
+#    Updated: 2018/03/15 03:29:01 by jbulant          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,19 +20,30 @@ SRCS_NAME =	ft_printf.c \
 			ft_printf_copy.c \
 			ft_printf_analyze.c \
 			ft_printf_close.c \
+			print_bits.c \
 			parse_integers.c \
 			parse_strings.c \
+			parse_char.c \
 			parse_oct.c \
 			parse_hex.c \
+			parse_unicode.c \
+			parse_unsigned.c \
+			parse_pointer.c \
 			check_status.c \
 			ft_str.c \
 			ft_static_itoa.c \
-			ft_static_itoa_base.c
+			ft_static_itoa_base.c \
+			ft_static_ltoa.c \
+			ft_static_ultoa.c \
+			ft_static_ltoa_base.c
 
 LSRCS_NAME = ft_memcpy.c \
+				ft_putchar.c \
 				ft_strlen.c \
 				ft_strcat.c \
-				ft_toupper.c
+				ft_toupper.c \
+				ft_bzero.c \
+				ft_memalloc.c
 
 SRCS = $(addprefix $(SRCSDIR),$(SRCS_NAME))
 OBJS = $(addprefix $(OBJDIR),$(SRCS_NAME:.c=.o))

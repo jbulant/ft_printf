@@ -6,6 +6,7 @@ void	ft_printf_close(t_printf_data *data)
 	{
 		while (data->root_str)
 		{
+			write(1, data->root_str->buffer, data->root_str->size);
 			data->str = data->root_str;
 			data->root_str = data->root_str->next;
 			free(data->str);
@@ -23,4 +24,5 @@ void	ft_printf_close(t_printf_data *data)
 		}
 	}
 	data->root_str = NULL;
+	data->current_flags = 0;
 }

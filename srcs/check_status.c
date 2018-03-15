@@ -22,7 +22,10 @@ t_bool			find_percent(const char *s, int *index)
 void		check_status(t_printf_data *data)
 {
 	if (find_percent(data->format_string + data->format_index, &data->max_copy))
+	{
 		data->status = ANALYZING_PERCENT;
+//		printf("je passe ici\n");
+	}
 	else
 		data->status = FINISH;	
 }

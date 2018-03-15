@@ -7,13 +7,14 @@ int		ft_printf(const char *format, ...)
 															ft_printf_copy,
 															ft_printf_analyze};
 
-	(void)action;
-	va_start(data.args, format);
 	if (!data.root_str)
 		data.root_str = ft_create_str();
+	va_start(data.args, format);
 	data.str = data.root_str;
 	data.format_string = format;
 	data.format_index = 0;
+	data.max_copy = 0;
+	data.ret_value = 0;
 	if (!data.format_string)
 	{
 		data.ret_value = -1;
@@ -24,6 +25,7 @@ int		ft_printf(const char *format, ...)
 	while(TREATING(data.status))
 	{
 		action[data.status](&data);
+		//printf("%i\n", data.status);
 		//treat data
 	}
 	// finishing + write + clean

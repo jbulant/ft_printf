@@ -2,8 +2,7 @@
 
 int			ft_printf_analyze(t_printf_data *data)
 {
-	static int		(*hashtab[128])(t_printf_data*, t_flags*) = {0};
-	static t_flags	flag = 0;
+	static int		(*hashtab[128])(t_printf_data*) = {0};
 	static t_bool	loaded = FALSE;
 
 	if (!loaded)
@@ -16,6 +15,11 @@ int			ft_printf_analyze(t_printf_data *data)
 		hashtab['O'] = parse_oct;
 		hashtab['x'] = parse_hex;
 		hashtab['X'] = parse_hex;
+		hashtab['p'] = parse_pointer;
+		hashtab['u'] = parse_unsigned_type;
+		hashtab['U'] = parse_unsigned_type;
+		hashtab['c'] = parse_char_type;
+		hashtab['C'] = parse_unicode;
 		loaded = TRUE;
 	}
 	data->format_index++;
@@ -23,10 +27,10 @@ int			ft_printf_analyze(t_printf_data *data)
 	{
 		data->str->buffer[data->str->size++] = '%';
 		data->format_index++;
-		flag = 0;
+		data->current_flags = 0;
 		data->status = COPYING;
 	}
 	//else if (data->format_string[data->format_index] == 'd')
-		hashtab[(int)data->format_string[data->format_index]](data, &flag);
+	hashtab[(int)data->format_string[data->format_index]](data);
 	return (0);
 }
