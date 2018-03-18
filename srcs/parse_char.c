@@ -5,9 +5,9 @@ int		parse_char_type(t_printf_data *data)
 	char	c;
 
 	c = (char)va_arg(data->args, int);
-	data->current_flags |= DELIM_CHAR;
-	data->str->buffer[data->str->size++] = c;
+	data->current_arg.delim |= DELIM_CHAR;
+	data->ret_value += ft_big_strset(&data->str, c, 1);
 	data->format_index++;
-	data->current_flags = 0;
+	data->current_arg = ft_new_printf_arg();
 	return ((data->status = COPYING));
 }

@@ -7,6 +7,8 @@ int			ft_printf_analyze(t_printf_data *data)
 
 	if (!loaded)
 	{
+		for (int i = 0; i < 128; i++)
+			hashtab[i] = parse_error;
 		hashtab['d'] = parse_int_type;
 		hashtab['D'] = parse_int_type;
 		hashtab['i'] = parse_int_type;
@@ -20,14 +22,18 @@ int			ft_printf_analyze(t_printf_data *data)
 		hashtab['U'] = parse_unsigned_type;
 		hashtab['c'] = parse_char_type;
 		hashtab['C'] = parse_unicode;
+		hashtab['h'] = set_mod_h;
+		hashtab['l'] = set_mod_l;
+		hashtab['j'] = set_mod_j;
+		hashtab['z'] = set_mod_z;
 		loaded = TRUE;
 	}
 	data->format_index++;
 	if (data->format_string[data->format_index] == '%')
 	{
-		data->str->buffer[data->str->size++] = '%';
+		ft_big_strset(&data->str, '%', 1);
 		data->format_index++;
-		data->current_flags = 0;
+		data->current_arg = ft_new_printf_arg();
 		data->status = COPYING;
 	}
 	//else if (data->format_string[data->format_index] == 'd')

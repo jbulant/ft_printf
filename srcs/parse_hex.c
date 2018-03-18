@@ -15,14 +15,16 @@ int	parse_hex(t_printf_data *data)
 	int		hex;
 	char	*str;
 
-	data->current_flags |= DELIM_HEX;
+	if (!(data->format_string[data->format_index] & 32))
+		data->current_arg.delim |= DELIM_UHEX;
+	else
+		data->current_arg.delim |= DELIM_LHEX;		
 	hex = va_arg(data->args, int);
 	str = ft_static_itoa_base(hex, 16);
-	if (!(data->format_string[data->format_index] & 32))
+	if (!(data->current_arg.delim & DELIM_UHEX))
 		ft_str_toupper(str);
-	ft_strcat(data->str->buffer + data->str->size, str);
-	data->str->size += ft_strlen(str);
-	data->current_flags = 0;
+	data->ret_value += ft_big_strncat(&data->str, str, ft_strlen(str));
+	data->current_arg = ft_new_printf_arg();
 	data->format_index++;
 	return ((data->status = COPYING));
 }

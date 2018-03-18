@@ -1,15 +1,3 @@
-#******************************************************************************#
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jbulant <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/07 16:49:28 by jbulant           #+#    #+#              #
-#    Updated: 2018/03/15 03:29:01 by jbulant          ###   ########.fr        #
-#                                                                              #
-#******************************************************************************#
-
 NAME = libftprintf.a
 
 LIBFTDIR = libft/
@@ -21,6 +9,7 @@ SRCS_NAME =	ft_printf.c \
 			ft_printf_analyze.c \
 			ft_printf_close.c \
 			print_bits.c \
+			ft_modifiers.c \
 			parse_integers.c \
 			parse_strings.c \
 			parse_char.c \
@@ -29,13 +18,15 @@ SRCS_NAME =	ft_printf.c \
 			parse_unicode.c \
 			parse_unsigned.c \
 			parse_pointer.c \
+			parse_error.c \
+			convert_unicode.c \
 			check_status.c \
-			ft_str.c \
 			ft_static_itoa.c \
 			ft_static_itoa_base.c \
 			ft_static_ltoa.c \
 			ft_static_ultoa.c \
-			ft_static_ltoa_base.c
+			ft_static_ltoa_base.c \
+			ft_utilities.c
 
 LSRCS_NAME = ft_memcpy.c \
 				ft_putchar.c \
@@ -43,7 +34,8 @@ LSRCS_NAME = ft_memcpy.c \
 				ft_strcat.c \
 				ft_toupper.c \
 				ft_bzero.c \
-				ft_memalloc.c
+				ft_memalloc.c \
+				ft_memset.c
 
 SRCS = $(addprefix $(SRCSDIR),$(SRCS_NAME))
 OBJS = $(addprefix $(OBJDIR),$(SRCS_NAME:.c=.o))
