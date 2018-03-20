@@ -26,6 +26,17 @@ int			ft_printf_analyze(t_printf_data *data)
 		hashtab['l'] = set_mod_l;
 		hashtab['j'] = set_mod_j;
 		hashtab['z'] = set_mod_z;
+		hashtab['.'] = set_precision;
+		hashtab['1'] = set_width_digit;
+		hashtab['2'] = set_width_digit;
+		hashtab['3'] = set_width_digit;
+		hashtab['4'] = set_width_digit;
+		hashtab['5'] = set_width_digit;
+		hashtab['6'] = set_width_digit;
+		hashtab['7'] = set_width_digit;
+		hashtab['8'] = set_width_digit;
+		hashtab['9'] = set_width_digit;
+		hashtab['*'] = set_width_wildcard;
 		loaded = TRUE;
 	}
 	data->format_index++;

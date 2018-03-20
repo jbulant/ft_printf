@@ -2,7 +2,7 @@
 
 int		nilcase(t_printf_data *data)
 {
-	data->ret_value += ft_big_strncat(&data->str, "(nil)", 5);
+	data->ret_value += ft_big_strncat(&data->str, "(null)", 6);
 	data->current_arg = ft_new_printf_arg();
 	data->format_index++;
 	return ((data->status = COPYING));

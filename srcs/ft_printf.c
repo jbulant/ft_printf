@@ -4,9 +4,7 @@ t_printf_arg	ft_new_printf_arg(void)
 {
 	t_printf_arg arg;
 
-	arg.delim = NOFLAG;
-	arg.mod = NOFLAG;
-	arg.spec = NOFLAG;
+	ft_bzero((void*)&arg, sizeof(t_printf_arg));
 	return (arg);
 }
 

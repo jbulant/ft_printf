@@ -26,16 +26,16 @@ typedef enum	e_ft_printf_status
 
 typedef enum 	s_flag_delim
 {
-	DELIM_STR = (1 << 0),
-	DELIM_UNI_STR = (1 << 1),
-	DELIM_POINTER = (1 << 2),
-	DELIM_INT = (1 << 3),
-	DELIM_OCTAL = (1 << 4),
-	DELIM_UNSIGNED = (1 << 5),
-	DELIM_LHEX = (1 << 6),
-	DELIM_UHEX = (1 << 7),
-	DELIM_CHAR = (1 << 8),
-	DELIM_UNI_CHAR = (1 << 9)
+	DELIM_OCTAL = 0,
+	DELIM_LHEX = 1,
+	DELIM_UHEX = 2,
+	DELIM_UNSIGNED = 3,
+	DELIM_INT = 4,
+	DELIM_STR = 5,
+	DELIM_UNI_STR = 6,
+	DELIM_POINTER = 7,
+	DELIM_CHAR = 8,
+	DELIM_UNI_CHAR = 9
 }				t_flag_delim;
 
 typedef enum 	s_flag_spec
@@ -51,12 +51,12 @@ typedef enum 	s_flag_spec
 
 typedef enum	e_flag_mod
 {
-	MOD_H = (1 << 0),
-	MOD_HH = (1 << 1),
-	MOD_L = (1 << 2),
-	MOD_LL = (1 << 3),
-	MOD_J = (1 << 4),
-	MOD_Z = (1 << 5)
+	MOD_HH = 1,
+	MOD_H = 2,
+	MOD_L = 3,
+	MOD_LL = 4,
+	MOD_J = 5,
+	MOD_Z = 6
 }				t_flag_mod;
 
 typedef struct	s_printf_arg
@@ -65,8 +65,10 @@ typedef struct	s_printf_arg
 	t_flag_delim	delim;
 	t_flag_mod		mod;
 	t_flag_spec		spec;
-	int				precision;
-	int				width;
+	size_t			size;
+	size_t			total_size;
+	unsigned int	precision;
+	unsigned int	width;
 }				t_printf_arg;
 
 # define STR_BUFFSIZE 4096
@@ -88,12 +90,6 @@ typedef struct	s_printf_data
 	t_printf_arg		current_arg;
 	t_ft_printf_status	status;
 }				t_printf_data;
-
-typedef union 	u_ft_wchar
-{
-	char w[4];
-	wchar_t c;
-}				t_ft_wchar;
 
 typedef struct	s_unicode
 {
@@ -127,10 +123,14 @@ int				parse_unicode(t_printf_data *data);
 int				parse_unsigned_type(t_printf_data *data);
 int				parse_pointer(t_printf_data *data);
 int				parse_error(t_printf_data *data);
+void			parse_width(t_printf_data *data);
+void			parse_precision(t_printf_data *data);
+void			parse_sharp(t_printf_data *data);
 
 char			*ft_static_itoa_base(int nb, int base);
 char			*ft_static_ltoa_base(int64_t nb, int base);
 char			*ft_static_ultoa(uint64_t nb);
+char			*ft_static_ultoa_base(uint64_t nb, int base);
 char			*ft_static_itoa(int nb);
 char			*ft_static_ltoa(int64_t nb);
 
@@ -146,5 +146,17 @@ int				set_mod_h(t_printf_data *data);
 int				set_mod_l(t_printf_data *data);
 int				set_mod_j(t_printf_data *data);
 int				set_mod_z(t_printf_data *data);
+int				set_precision(t_printf_data *data);
+int				set_width_digit(t_printf_data *data);
+int				set_width_wildcard(t_printf_data *data);
+
+void			ft_casts(t_printf_data *data);
+void			convert_z(t_printf_data *data);
+void			convert_j(t_printf_data *data);
+void			convert_ll(t_printf_data *data);
+void			convert_l(t_printf_data *data);
+void			convert_hh(t_printf_data *data);
+void			convert_h(t_printf_data *data);
+void			convert_basic(t_printf_data *data);
 
 #endif

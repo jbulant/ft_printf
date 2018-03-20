@@ -7,22 +7,16 @@
 int			main(int ac, char **av)
 {
 	setlocale(LC_ALL, "");
-	long long int i;
-	if (ac == 1)
-		return (0);
-	i = LLONG_MAX;
-//	printf("THEM===\n");
-//	printf("%d\n", printf("%p\n", av[1]));
-//	printf("%d\n", printf("%hhd\n", i));
-//	printf("OUR ===\n");
-//	ft_printf("%d\n", ft_printf("%p\n", av[1]));
+	static const char *test[2] = {"2345", "23"};
+	// unsigned long long t = ULLONG_MAX;
+	size_t t = 0xfff;
+	short s = 50;
+	short g = 32;
 
-//	ft_printf("%d\n", ft_printf("%hdtruc\n", 0x22394));
-	ft_printf("%h    = %h\n");
-	ft_printf("%hl   = %hl\n");
-	ft_printf("%lh   = %lh\n");
-	ft_printf("%hhlhd = %hd\n", 5, 53);
-//	printf("%llu \n", LLONG_MAX + 2);
-	
+	printf("%zu\n", sizeof(test[0]));
+	ft_printf("%d: ", printf("le leur:  %-#*.*llxcoucou\n", s, g, t));
+	ft_printf("%d: ", ft_printf("le notre: %*.*llxcoucou\n", s, g, t));
+	printf("le leur:  %-*s ggg\n", s, "une chaine de characters");
+	// ft_printf("le notre: %llu\n", t);
 	return (0);
 }
