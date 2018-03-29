@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+
 int				set_precision(t_printf_data *data)
 {
 	int		i;
@@ -59,5 +60,41 @@ int				set_width_digit(t_printf_data *data)
 		j++;
 	data->format_index += (size_t)j;
 	printf("width set: %u\n", data->current_arg.width);
+	return (0);
+}
+
+int				set_minus_sign(t_printf_data *data)
+{
+	if (data->current_arg.spec & SPEC_MINUS
+		|| data->current_arg.mod
+		|| data->current_arg.spec) // check it 
+		return (parse_error(data));
+	data->current_arg.spec |= SPEC_MINUS;
+	data->format_index += 1;
+	printf("minus sign set\n");
+	return (0);
+}
+
+int				set_plus_sign(t_printf_data *data)
+{
+	if (data->current_arg.spec & SPEC_PLUS
+		|| data->current_arg.mod
+		|| data->current_arg.spec) // check it 
+		return (parse_error(data));
+	data->current_arg.spec |= SPEC_PLUS;
+	data->format_index += 1;
+	printf("plus sign set\n");
+	return (0);
+}
+
+int				set_space(t_printf_data *data)
+{
+	if (data->current_arg.spec & SPEC_SPACE
+		|| data->current_arg.mod
+		|| data->current_arg.spec) // check it 
+		return (parse_error(data));
+	data->current_arg.spec |= SPEC_SPACE;
+	data->format_index += 1;
+	printf("minus sign set\n");
 	return (0);
 }

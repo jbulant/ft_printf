@@ -149,6 +149,9 @@ int				set_mod_z(t_printf_data *data);
 int				set_precision(t_printf_data *data);
 int				set_width_digit(t_printf_data *data);
 int				set_width_wildcard(t_printf_data *data);
+int				set_space(t_printf_data *data);
+int				set_plus_sign(t_printf_data *data);
+int				set_minus_sign(t_printf_data *data);
 
 void			ft_casts(t_printf_data *data);
 void			convert_z(t_printf_data *data);

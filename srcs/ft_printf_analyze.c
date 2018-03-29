@@ -37,6 +37,9 @@ int			ft_printf_analyze(t_printf_data *data)
 		hashtab['8'] = set_width_digit;
 		hashtab['9'] = set_width_digit;
 		hashtab['*'] = set_width_wildcard;
+		hashtab['-'] = set_minus_sign;
+		hashtab['+'] = set_plus_sign;
+		hashtab[' '] = set_space;
 		loaded = TRUE;
 	}
 	data->format_index++;

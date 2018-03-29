@@ -22,3 +22,11 @@ void		parse_width(t_printf_data *data)
 		return ;
 	data->ret_value += ft_big_strset(&data->str, ' ', (size_t)i);
 }
+
+void		parse_minus(t_printf_data *data)
+{
+	(void)data;
+//	if ()
+//		return ;
+//	data->
+}
