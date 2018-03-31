@@ -14,9 +14,9 @@ int			main(int ac, char **av)
 	short g = 32;
 
 	printf("%zu\n", sizeof(test[0]));
-	ft_printf("%d: ", printf("le leur:  %-#*.*llxcoucou\n", s, g, t));
-	ft_printf("%d: ", ft_printf("le notre: %*.*llxcoucou\n", s, g, t));
-	printf("le leur:  %-*s ggg\n", s, "une chaine de characters");
+	ft_printf("%d: ",    printf("le leur:  |%-50.32llxcoucou|\n", t));
+	ft_printf("%d: ", ft_printf("le notre: |%-50.32llxcoucou|\n", t));
+	// printf("le leur:  %-*s ggg\n", s, "une chaine de characters");
 	// ft_printf("le notre: %llu\n", t);
 	return (0);
 }

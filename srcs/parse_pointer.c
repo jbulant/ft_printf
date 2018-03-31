@@ -17,7 +17,7 @@ int		parse_pointer(t_printf_data *data)
 	ptr = va_arg(data->args, void*);
 	if (!ptr)
 		return (nilcase(data));
-	str = ft_static_ltoa_base((uint64_t)ptr, 16);
+	str = ft_static_ltoa_base(*(uint64_t *)ptr, 16);
 	data->ret_value += ft_big_strncat(&data->str, "0x", 2);
 	data->ret_value += ft_big_strncat(&data->str, str, ft_strlen(str));
 	data->current_arg = ft_new_printf_arg();

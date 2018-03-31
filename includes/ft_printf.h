@@ -114,6 +114,7 @@ void			check_status(t_printf_data *data);
 void			ft_printf_close(t_printf_data *data);
 void			print_bits(int unicode);
 
+int				ft_big_strset_off(t_str *dst, int off, char c, size_t n);
 int				parse_int_type(t_printf_data *data);
 int				parse_str_type(t_printf_data *data);
 int				parse_oct(t_printf_data *data);

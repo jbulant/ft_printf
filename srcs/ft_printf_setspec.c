@@ -7,7 +7,9 @@ int				set_precision(t_printf_data *data)
 
 	if (data->current_arg.spec & SPEC_PRECISION
 		|| data->current_arg.mod)
+	  {printf("lol KKK\n");
 		return (parse_error(data));
+	  }
 	data->current_arg.spec |= SPEC_PRECISION;
 	if (data->format_string[data->format_index + 1] == '*')
 	{
@@ -37,7 +39,10 @@ int				set_width_wildcard(t_printf_data *data)
 {
 	if (data->current_arg.spec & (SPEC_PRECISION | SPEC_FIELD_WIDTH)
 		|| data->current_arg.mod)
+	  {
+	    printf("lol\n");
 		return (parse_error(data));
+	  }
 	data->current_arg.spec |= SPEC_FIELD_WIDTH;
 	data->current_arg.width = va_arg(data->args, unsigned int);
 	printf("width set: %u\n", data->current_arg.width);
@@ -51,7 +56,9 @@ int				set_width_digit(t_printf_data *data)
 
 	if (data->current_arg.spec & (SPEC_PRECISION | SPEC_FIELD_WIDTH)
 		|| data->current_arg.mod)
+	  {printf("lol\n");
 		return (parse_error(data));
+	  }
 	data->current_arg.spec |= SPEC_FIELD_WIDTH;
 	data->current_arg.width = ft_atoi(data->format_string + data->format_index);
 	j = 0;
@@ -68,9 +75,10 @@ int				set_minus_sign(t_printf_data *data)
 	if (data->current_arg.spec & SPEC_MINUS
 		|| data->current_arg.mod
 		|| data->current_arg.spec) // check it 
+	  {printf("Ay lmao\n");
 		return (parse_error(data));
+	  }
 	data->current_arg.spec |= SPEC_MINUS;
-	data->format_index += 1;
 	printf("minus sign set\n");
 	return (0);
 }
@@ -80,9 +88,11 @@ int				set_plus_sign(t_printf_data *data)
 	if (data->current_arg.spec & SPEC_PLUS
 		|| data->current_arg.mod
 		|| data->current_arg.spec) // check it 
+	  {
+	    printf("???\n");
 		return (parse_error(data));
+	  }
 	data->current_arg.spec |= SPEC_PLUS;
-	data->format_index += 1;
 	printf("plus sign set\n");
 	return (0);
 }
@@ -94,7 +104,6 @@ int				set_space(t_printf_data *data)
 		|| data->current_arg.spec) // check it 
 		return (parse_error(data));
 	data->current_arg.spec |= SPEC_SPACE;
-	data->format_index += 1;
-	printf("minus sign set\n");
+	printf("space set\n");
 	return (0);
 }

@@ -2,6 +2,7 @@
 
 int		parse_error(t_printf_data *data)
 {
+  printf("that suck bro : == %c\n", data->format_string[ data->format_index]);
 	data->ret_value += ft_big_strncat(&data->str
 									, data->format_string + data->max_copy
 									, data->format_index - data->max_copy);

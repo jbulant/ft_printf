@@ -4,10 +4,11 @@ int			ft_printf_analyze(t_printf_data *data)
 {
 	static int		(*hashtab[128])(t_printf_data*) = {0};
 	static t_bool	loaded = FALSE;
+	int		i = -1;
 
 	if (!loaded)
 	{
-		for (int i = 0; i < 128; i++)
+	  while (++i < 128)
 			hashtab[i] = parse_error;
 		hashtab['d'] = parse_int_type;
 		hashtab['D'] = parse_int_type;
